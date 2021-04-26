@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width,maximum-scale=1,minimum-scale=1,initial-scale=1,user-scalable=no">
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate">
+<meta HTTP-EQUIV="expires" CONTENT="0">
+<title>请您微信绑定</title>
+<style type="text/css">
+body {
+	height: 100vh;
+	width: 100vw;
+	background-color: #f8f8f8;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: 16px;
+}
+
+div {
+	margin: 5px;
+}
+
+label {
+	display: inline-block;
+	width: 60px;
+	line-height: 30px;
+}
+
+input {
+	height: 30px;
+	line-height: 30px;
+	width: 200px;
+	border: solid 1px #ccc;
+	text-indent: 5px;
+}
+
+button {
+	width: 160px;
+	height: 30px;
+	margin-top: 20px;
+}
+</style>
+
+</head>
+
+<body>
+	<div>
+		<label for="loginCode">登录名</label> <input type="text" id="loginCode" />
+	</div>
+	<div>
+		<label for="loginPwd">密码</label> <input type="password" id="loginPwd" />
+	</div>
+	<div>
+		<button id="btnLogin">绑定</button>
+	</div>
+	<script type="text/javascript">
+		let serach = window.location.search;
+		btnLogin.addEventListener('click', event => {
+			let btnLogin = document.querySelector("#btnLogin");
+			let loginCode = document.querySelector("#loginCode").value;
+			let loginPwd = document.querySelector("#loginPwd").value;
+			serach += `&u=${loginCode}&p=${loginPwd}`;
+			let url = "weixinbind" + serach;
+			fetch(url).then((resp) => resp.text()).then(code => {
+				if (code === "0") {
+					alert("绑定失败，请重新扫描二维码");
+					return;
+				}
+				alert("绑定成功，请重扫描二维码完成登录");
+				WeixinJSBridge.call('closeWindow');
+			});
+		});
+	</script>
+</body>
+
+</html>
