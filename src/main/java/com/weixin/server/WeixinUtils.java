@@ -33,7 +33,7 @@ public class WeixinUtils {
 	private static final MediaType JSON = MediaType.parse("application/json;charset=utf-8");
 	private static String ACCESSTOKEN = null;
 	private static final String APPID = "wx859fbe49678386af";
-	private static final String APPSECRET = "184f3b3022818336571c7bd3b5f72427";
+	private static final String APPSECRET = "替换真实APPSECRET";
 	private static final String ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}";
 	private static final String QRCODE_TICKET_URL = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token={0}";
 	private static final String QRCODE_SRC_URL = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket={0}";
